@@ -31,6 +31,20 @@
             </association>
         </collection>
     </resultMap>
+    <resultMap id="MenuWithRole" type="icu.epq.minihr.model.Menu" extends="BaseResultMap">
+        <collection property="roles" ofType="icu.epq.minihr.model.Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
+    <select id="getAllMenusWithRole" resultMap="MenuWithRole">
+        SELECT m.*, r.id as rid, r.name as rname, r.nameZh as rnameZh
+        FROM menu as m
+                 LEFT OUTER JOIN menu_role as mr on m.id = mr.mid
+                 LEFT OUTER JOIN role as r on mr.rid = r.id
+        WHERE m.id > 6;
+    </select>
     <select id="getMenusByHrId" resultMap="Menus2">
         SELECT DISTINCT m2.*,
                         m1.id          as id2,

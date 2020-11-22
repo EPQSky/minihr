@@ -1,6 +1,9 @@
 package icu.epq.minihr.mapper;
 
 import icu.epq.minihr.model.Hr;
+import icu.epq.minihr.model.Role;
+
+import java.util.List;
 
 public interface HrMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +19,6 @@ public interface HrMapper {
     int updateByPrimaryKey(Hr record);
 
     Hr loadUserByUsername(String username);
+
+    List<Role> getHrRoleById(Integer hrId);
 }

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author EPQ
+ * <p>
+ * 校验用户登陆信息是否和数据库一致
  */
 @Service
 public class HrService implements UserDetailsService {
@@ -20,9 +22,10 @@ public class HrService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Hr hr = hrMapper.loadUserByUsername(username);
-        if (hr == null){
+        if (hr == null) {
             throw new UsernameNotFoundException("用户不存在！");
         }
+        hr.setRoles(hrMapper.getHrRoleById(hr.getId()));
         return hr;
     }
 }

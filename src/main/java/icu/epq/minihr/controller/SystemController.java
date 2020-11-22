@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * @author EPQ
+ *
+ * 提供用户所能显示的菜单栏数据接口
  */
 @RestController
 @RequestMapping("/system/config")

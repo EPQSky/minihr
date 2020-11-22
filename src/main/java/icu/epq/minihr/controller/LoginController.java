@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author EPQ
  * <p>
- * 登陆API接口
+ * 登陆提示
  */
 @RestController
 public class LoginController {

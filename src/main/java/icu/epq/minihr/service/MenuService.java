@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * @author EPQ
+ * <p>
+ * 查询该用户所拥有的菜单栏
  */
 @Service
 public class MenuService {
@@ -21,5 +23,9 @@ public class MenuService {
     public List<Menu> getMenusByHrId() {
 
         return menuMapper.getMenusByHrId(((Hr) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
+    }
+
+    public List<Menu> getAllMenusWithRole() {
+        return menuMapper.getAllMenusWithRole();
     }
 }
