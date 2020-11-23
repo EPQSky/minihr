@@ -1,4 +1,4 @@
-package icu.epq.minihr.controller;
+package icu.epq.minihr.controller.config;
 
 import icu.epq.minihr.model.Menu;
 import icu.epq.minihr.service.MenuService;
