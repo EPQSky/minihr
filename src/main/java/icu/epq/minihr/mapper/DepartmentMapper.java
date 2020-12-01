@@ -2,6 +2,8 @@ package icu.epq.minihr.mapper;
 
 import icu.epq.minihr.model.Department;
 
+import java.util.List;
+
 public interface DepartmentMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,10 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+
+    List<Department> getAllDepartmentsByPid(Integer pid);
+
+    Integer addDepartment(Department department);
+
+    void deleteDepartmentById(Department department);
 }
