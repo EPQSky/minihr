@@ -1,11 +1,23 @@
 package icu.epq.minihr.model;
 
+import java.util.List;
+
 public class Role {
     private Integer id;
 
     private String name;
 
     private String nameZh;
+
+    private List<Integer> menuIds;
+
+    public List<Integer> getMenuIds() {
+        return menuIds;
+    }
+
+    public void setMenuIds(List<Integer> menuIds) {
+        this.menuIds = menuIds;
+    }
 
     public Integer getId() {
         return id;
