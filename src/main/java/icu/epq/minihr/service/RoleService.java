@@ -42,4 +42,8 @@ public class RoleService {
         menuRoleMapper.deleteByRid(id);
         return roleMapper.deleteByPrimaryKey(id);
     }
+
+    public List<Role> getAllHrRoles() {
+        return roleMapper.getAllRoles();
+    }
 }
