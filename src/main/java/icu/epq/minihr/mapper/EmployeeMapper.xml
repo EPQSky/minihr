@@ -59,6 +59,10 @@
     school, beginDate, workState, workID, contractTerm, conversionTime, notWorkDate, 
     beginContract, endContract, workAge
   </sql>
+    <select id="getMaxWorkID" resultType="java.lang.Integer">
+        SELECT MAX(workID)
+        FROM employee;
+    </select>
     <select id="getTotal" resultType="java.lang.Long">
         SELECT COUNT(*)
         FROM employee
@@ -68,28 +72,28 @@
         ;
     </select>
     <select id="getEmployeeByPage" resultMap="AllEmployeeInfo">
-    SELECT e.*,
-           n.id    AS nid,
-           n.name  AS nname,
-           ps.id   AS psid,
-           ps.name AS psname,
-           d.id    AS did,
-           d.name  AS dname,
-           j.id    AS jid,
-           j.name  AS jname,
-           p.id    AS pid,
-           p.name  AS pname
-    FROM employee AS e
-             INNER JOIN nation AS n ON e.nationId = n.id
-             INNER JOIN politicsstatus AS ps ON e.politicId = ps.id
-             INNER JOIN department AS d ON e.departmentId = d.id
-             INNER JOIN joblevel AS j ON e.jobLevelId = j.id
-             INNER JOIN position AS p ON e.posId = p.id
-    <if test="keyword != null and keyword != ''">
-        WHERE e.name LIKE concat('%',#{keyword},'%')
-    </if>
-    limit #{size} OFFSET #{page};
-  </select>
+        SELECT e.*,
+        n.id AS nid,
+        n.name AS nname,
+        ps.id AS psid,
+        ps.name AS psname,
+        d.id AS did,
+        d.name AS dname,
+        j.id AS jid,
+        j.name AS jname,
+        p.id AS pid,
+        p.name AS pname
+        FROM employee AS e
+        INNER JOIN nation AS n ON e.nationId = n.id
+        INNER JOIN politicsstatus AS ps ON e.politicId = ps.id
+        INNER JOIN department AS d ON e.departmentId = d.id
+        INNER JOIN joblevel AS j ON e.jobLevelId = j.id
+        INNER JOIN position AS p ON e.posId = p.id
+        <if test="keyword != null and keyword != ''">
+            WHERE e.name LIKE concat('%',#{keyword},'%')
+        </if>
+        limit #{size} OFFSET #{page};
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>

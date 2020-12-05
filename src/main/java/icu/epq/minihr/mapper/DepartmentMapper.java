@@ -22,4 +22,6 @@ public interface DepartmentMapper {
     Integer addDepartment(Department department);
 
     void deleteDepartmentById(Department department);
+
+    List<Department> getAllDepartmentsNotList();
 }

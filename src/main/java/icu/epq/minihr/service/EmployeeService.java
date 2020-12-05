@@ -33,4 +33,27 @@ public class EmployeeService {
 
         return respPageBean;
     }
+
+    public Integer addEmployee(Employee employee) {
+        long beginDate = employee.getBeginContract().getTime();
+        long endDate = employee.getEndContract().getTime();
+        long date = endDate - beginDate;
+        double days = (double) (date / (1000 * 60 * 60 * 24));
+        double year = Double.parseDouble(String.format("%.2f", days / 365));
+        employee.setContractTerm(year);
+        employee.setWorkState("在职");
+        return employeeMapper.insertSelective(employee);
+    }
+
+    public synchronized Integer getMaxWorkID() {
+        return employeeMapper.getMaxWorkID();
+    }
+
+    public Integer deleteEmployeeById(Integer id) {
+        return employeeMapper.deleteByPrimaryKey(id);
+    }
+
+    public Integer updateEmployee(Employee employee) {
+        return employeeMapper.updateByPrimaryKeySelective(employee);
+    }
 }

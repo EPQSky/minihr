@@ -17,6 +17,10 @@
     <sql id="Base_Column_List">
     id, name, parentId, depPath, enabled, isParent
   </sql>
+    <select id="getAllDepartmentsNotList" resultMap="BaseResultMap">
+        SELECT id, name
+        FROM department;
+    </select>
     <select id="deleteDepartmentById" statementType="CALLABLE">
         call deleteDep(#{id,mode=IN,jdbcType=INTEGER},#{result,mode=OUT,jdbcType=INTEGER})
     </select>
