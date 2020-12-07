@@ -7,6 +7,7 @@ import icu.epq.minihr.model.RespPageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,14 +19,14 @@ public class EmployeeService {
     @Autowired
     EmployeeMapper employeeMapper;
 
-    public RespPageBean getEmployeeByPage(Integer page, Integer size, String keyword) {
+    public RespPageBean getEmployeeByPage(Integer page, Integer size, Employee employee, Date[] dates) {
 
         if (page != null && size != null) {
             page = (page - 1) * size;
         }
 
-        List<Employee> data = employeeMapper.getEmployeeByPage(page, size, keyword);
-        Long total = employeeMapper.getTotal(keyword);
+        List<Employee> data = employeeMapper.getEmployeeByPage(page, size, employee, dates);
+        Long total = employeeMapper.getTotal(employee, dates);
 
         RespPageBean respPageBean = new RespPageBean();
         respPageBean.setTotal(total);

@@ -3,6 +3,7 @@ package icu.epq.minihr.mapper;
 import icu.epq.minihr.model.Employee;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface EmployeeMapper {
@@ -18,9 +19,9 @@ public interface EmployeeMapper {
 
     int updateByPrimaryKey(Employee record);
 
-    List<Employee> getEmployeeByPage(@Param("page") Integer page, @Param("size") Integer size,@Param("keyword") String keyword);
-
-    Long getTotal(String keyword);
-
     Integer getMaxWorkID();
+
+    List<Employee> getEmployeeByPage(@Param("page") Integer page, @Param("size") Integer size, @Param("employee") Employee employee, @Param("dates") Date[] dates);
+
+    Long getTotal(@Param("employee") Employee employee, @Param("dates") Date[] dates);
 }

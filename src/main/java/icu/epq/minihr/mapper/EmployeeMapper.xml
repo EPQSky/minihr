@@ -66,9 +66,32 @@
     <select id="getTotal" resultType="java.lang.Long">
         SELECT COUNT(*)
         FROM employee
-        <if test="keyword != null and keyword != ''">
-            WHERE name LIKE concat('%',#{keyword},'%')
-        </if>
+        <where>
+            <if test="employee.name != null and employee.name != ''">
+                AND name LIKE concat('%',#{employee.name},'%')
+            </if>
+            <if test="employee.politicId != null">
+                AND politicId = #{employee.politicId}
+            </if>
+            <if test="employee.nationId != null">
+                AND nationId = #{employee.nationId}
+            </if>
+            <if test="employee.posId != null">
+                AND posId = #{employee.posId}
+            </if>
+            <if test="employee.jobLevelId != null">
+                AND jobLevelId = #{employee.jobLevelId}
+            </if>
+            <if test="employee.departmentId != null">
+                AND departmentId = #{employee.departmentId}
+            </if>
+            <if test="employee.engageForm != null and employee.engageForm != ''">
+                AND engageForm = #{employee.engageForm}
+            </if>
+            <if test="dates != null">
+                AND DATE(beginDate) BETWEEN #{dates[0]} AND #{dates[1]}
+            </if>
+        </where>
         ;
     </select>
     <select id="getEmployeeByPage" resultMap="AllEmployeeInfo">
@@ -89,9 +112,33 @@
         INNER JOIN department AS d ON e.departmentId = d.id
         INNER JOIN joblevel AS j ON e.jobLevelId = j.id
         INNER JOIN position AS p ON e.posId = p.id
-        <if test="keyword != null and keyword != ''">
-            WHERE e.name LIKE concat('%',#{keyword},'%')
-        </if>
+        <where>
+            <if test="employee.name != null and employee.name != ''">
+                AND e.name LIKE concat('%',#{employee.name},'%')
+            </if>
+            <if test="employee.politicId != null">
+                AND e.politicId = #{employee.politicId}
+            </if>
+            <if test="employee.nationId != null">
+                AND e.nationId = #{employee.nationId}
+            </if>
+            <if test="employee.posId != null">
+                AND e.posId = #{employee.posId}
+            </if>
+            <if test="employee.jobLevelId != null">
+                AND e.jobLevelId = #{employee.jobLevelId}
+            </if>
+            <if test="employee.departmentId != null">
+                AND e.departmentId = #{employee.departmentId}
+            </if>
+            <if test="employee.engageForm != null and employee.engageForm != ''">
+                AND e.engageForm = #{employee.engageForm}
+            </if>
+            <if test="dates != null">
+                AND DATE(e.beginDate) BETWEEN #{dates[0]} AND #{dates[1]}
+            </if>
+        </where>
+
         limit #{size} OFFSET #{page};
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

@@ -5,6 +5,9 @@ import icu.epq.minihr.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sound.midi.Soundbank;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,8 +40,8 @@ public class EmpBasicController {
     @GetMapping("/")
     public RespPageBean getEmployeeByPage(@RequestParam(defaultValue = "1") Integer page,
                                           @RequestParam(defaultValue = "10") Integer size,
-                                          @RequestParam String keyword) {
-        return employeeService.getEmployeeByPage(page, size, keyword);
+                                          Employee employee, Date[] dates) {
+        return employeeService.getEmployeeByPage(page, size, employee, dates);
     }
 
     @PostMapping("/")
